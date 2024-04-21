@@ -12,7 +12,7 @@ logger = logging.getLogger(__file__)
 class ProductsPage(BasePage):
     shopping_cart_class_locator = 'shopping_cart_link'
     items_titles = 'inventory_item_name '
-    c = '.inventory_item_price '
+    items_prices = '.inventory_item_price '
     buttons_add_to_card = "//button[contains(@data-test, 'add-to-cart')]"
 
     def __init__(self, driver):

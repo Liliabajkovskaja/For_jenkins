@@ -35,6 +35,3 @@ class SqliteUsersTable:
     @execute_sql_query
     def delete_user_by_id(self, user_id):
         return f'delete from {self.table_name} where id = {user_id}'
-
-
-print(SqliteUsersTable().get_all_users())

@@ -16,16 +16,16 @@ def test_all_users_are_unique():
 
     response = user_api.get_all_users()
 
-    ids = [k['id'] for k in response.json()]
+    ids = [k.id for k in response]
     assert len(set(ids)) == len(ids)
 
 
 @pytest.mark.skipif(os.getenv('current_env') == Enviroments.DEV.value, reason='only for prod')
 def test_create_user():
 
-    payload = CreateUserPayload.random().get_dict()
-    response = user_api.create_user(body=payload)
-    UserAsserts.assert_created_user(payload, response.json())
+    payload = CreateUserPayload.random()
+    response = user_api.create_user(body=payload.get_dict())
+    UserAsserts.assert_created_user(payload, response)
 
 
 

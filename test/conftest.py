@@ -50,7 +50,7 @@ def get_driver(env) -> WebDriver:
     driver.quit()
 
 
-@fixture(autouse=True)
+@fixture
 def make_screenshot_after_test(get_driver):
     yield
 
@@ -65,8 +65,6 @@ def make_screenshot_after_test(get_driver):
     )
 
 
-
-
 @fixture
 def open_login_page(get_driver, env) -> WebDriver:
     get_driver.get(env.url)
@@ -76,9 +74,8 @@ def open_login_page(get_driver, env) -> WebDriver:
 
 @fixture
 def get_logged_product_page(open_login_page, get_user_name, get_user_password) -> ProductsPage:
-
     try:
-        return ProductsPage(open_login_page).find_shopping_cart(timeout=1)     # check if product page is opened
+        return ProductsPage(open_login_page).find_shopping_cart(timeout=1)  # check if product page is opened
     except TimeoutException:
 
         LoginPage(open_login_page).do_login(get_user_name, get_user_password)
@@ -100,4 +97,3 @@ def get_user_name(env) -> str:
 @fixture(scope='session')
 def get_user_password(env) -> str:
     return env.user_pass
-

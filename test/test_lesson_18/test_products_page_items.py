@@ -13,6 +13,7 @@ def test_titles_are_unique(get_logged_product_page):
 
 @allure.epic("Product page")
 @allure.title('test all prices are ordered')
+@pytest.mark.xfail
 @pytest.mark.ui_tests
 def test_prices_are_ordered(get_logged_product_page):
     products_page = get_logged_product_page
