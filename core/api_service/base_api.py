@@ -23,7 +23,7 @@ class BaseApi:
             assert response.status_code == expected_status_code, (f'Incorrect status code for {response.url}\n'
                                                                   f'expected {expected_status_code}\n'
                                                                   f'actual {response.status_code}')
-        if schema:
+        if response.status_code <400 and schema:
             return schema.load(response.json())
         return response.json()
 

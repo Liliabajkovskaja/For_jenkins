@@ -1,9 +1,12 @@
 import json
+from os import path
+
+from utils.constants import ROOT_PATH
 
 
 class ConfigManager:
 
-    with open('F:\Tests_0324\config_ui_test.json') as f:
+    with open(path.join(ROOT_PATH, 'config_ui_test.json')) as f:
         _data = f.read()
 
     _data = json.loads(_data)
