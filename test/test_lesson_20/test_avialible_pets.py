@@ -6,6 +6,7 @@ BASE_URL = "https://petstore.swagger.io/"
 FIND_BY_STATUS_URL = f"{BASE_URL}v2/pet/findByStatus"
 
 
+@pytest.mark.api_tests
 @pytest.mark.parametrize('value_status', ["available", "pending", 'sold'])
 def test_get_pets_by_status(value_status):
 

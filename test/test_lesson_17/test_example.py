@@ -1,6 +1,7 @@
 from page_objects.login_page import LoginPage
+import pytest
 
-
+@pytest.mark.ui_tests
 def test_simple(open_login_page, get_user_name, get_user_password):
 
     driver = open_login_page

@@ -1,7 +1,7 @@
 import pytest
 from lessons.lesson_15.phone import Phone
 
-
+@pytest.mark.unit
 class TestPhone:
     """
     comment

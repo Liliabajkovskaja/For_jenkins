@@ -1,3 +1,4 @@
+import pytest
 import requests
 import json
 
@@ -6,7 +7,7 @@ import json
 # FILMS_URL = "https://swapi.dev/api/films/1/?some_name=value,some_name=value2" #  params=[('some_name', 'value'), ('some_name', 'value2')]
 FILMS_URL = "https://swapi.dev/api/films/1/"
 
-
+@pytest.mark.api_tests
 def test_get_film():
 
     response = requests.get(url=FILMS_URL)
