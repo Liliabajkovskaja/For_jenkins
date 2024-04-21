@@ -10,7 +10,10 @@ class DriverFactory:
     def get_driver(self):
         if self._driver_type.lower() == 'chrome':
             options = Options()
-            # options.add_argument('--headless')
+            options.add_argument('headless')
+            options.add_argument('--disable-infobars')
+            options.add_argument('--disable-dev-shm-usage')
+            options.add_argument('--no-sandbox')
             return webdriver.Chrome(options=options)
         elif self._driver_type.lower() == 'firefox':
             return webdriver.Firefox()
