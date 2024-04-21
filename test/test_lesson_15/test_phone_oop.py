@@ -20,7 +20,7 @@ class TestPhone:
         self.phone.clear_call_history()
         print('\nteardown_method was run')
 
-    def test_get_model_2(self, get_new_phone):
+    def test_get_model_2(self, get_new_phone, default_model):
         """
         comment
         :return:
@@ -28,7 +28,7 @@ class TestPhone:
         phone = get_new_phone
         # if phone.model != expected_model:
         #     raise AssertionError
-        assert phone.model == 'Iphone 13'  # comment
+        assert phone.model == default_model  # comment
 
     def test_get_model(self):
         """
