@@ -6,4 +6,3 @@ if __name__ == '__main__':
         os.system(f"pytest test -m {os.getenv('MARKS')}")
     else:
         os.system(f"pytest test")
-

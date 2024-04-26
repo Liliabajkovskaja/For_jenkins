@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+    stages {
+        stage('Get project from github') {
+            steps {
+                git branch: 'jenkins', credentialsId: 'ec4b7f6a-cc42-4353-9435-d152c1f2be52', url: 'https://github.com/MrCrow79/Tests_0324/'
+            }
+        }
+		stage('Setup env') {
+            steps {
+                 sh '''#!/bin/bash
+                    rm -rf allure-results
+                    apt-get -y install python3
+                    apt-get -y install pip
+                    apt install python3.11-venv
+                    python3 -m venv venv2
+                    source venv2/bin/activate
+                    pip install -r requirements.txt'''
+            }
+        }
+        stage('Run tests in Parallel') {
+
+            parallel {
+                stage('Run unit') {
+                    steps {
+                        sh '''#!/bin/bash
+                        source venv2/bin/activate
+                        export MARKS=unit
+                        python3 app.py'''
+                    }
+                }
+                stage('Run api_tests') {
+                    steps {
+                        sh '''#!/bin/bash
+                        source venv2/bin/activate
+                        export MARKS=api_tests
+                        python3 app.py'''
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+        }
+    }
+}
