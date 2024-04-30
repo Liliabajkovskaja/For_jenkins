@@ -50,7 +50,7 @@ def get_driver(env) -> WebDriver:
     driver.quit()
 
 
-@fixture(autouse=True)
+@fixture(autouse=False)
 def make_screenshot_after_test(get_driver):
     yield
 
